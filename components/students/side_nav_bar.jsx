@@ -11,3 +11,4 @@ export default function SideNavBar(props) {
     <Nav.Link href="/student/settings">Settings</Nav.Link>
 </Nav>)
 }
+ 

@@ -18,13 +18,11 @@ const students = [
 
 export default function Students() {
   return (
-    <CounselorPage active="/students">
-      <Container className="md-container">
+    <CounselorPage active="/counselor/students">
+      <Container>
         <h1>
           Students
         </h1>
-      </Container>
-      <Container>
         <StudentView students={students}/>
       </Container>
     </CounselorPage>

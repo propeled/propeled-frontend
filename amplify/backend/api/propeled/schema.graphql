@@ -1,0 +1,33 @@
+type TaskTemplate @model @auth(rules: [{allow: public}]) @key(name: "byPath", fields: ["pathID"]) {
+  id: ID!
+  shortDescription: String!
+  longDescription: String!
+  title: String!
+  Tasks: [Task] @connection(keyName: "byTaskTemplate", fields: ["id"])
+  pathID: ID!
+}
+
+type Path @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Students: [Student] @connection(keyName: "byPath", fields: ["id"])
+  TaskTemplates: [TaskTemplate] @connection(keyName: "byPath", fields: ["id"])
+}
+
+type Task @model @auth(rules: [{allow: public}]) @key(name: "byStudent", fields: ["studentID"]) @key(name: "byTaskTemplate", fields: ["tasktemplateID"]) {
+  id: ID!
+  studentID: ID!
+  shortDescription: String!
+  longDescription: String
+  title: String!
+  tasktemplateID: ID!
+  studentCreated: Boolean
+}
+
+type Student @model @auth(rules: [{allow: public}]) @key(name: "byPath", fields: ["pathID"]) {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  Tasks: [Task] @connection(keyName: "byStudent", fields: ["id"])
+  pathID: ID!
+}
